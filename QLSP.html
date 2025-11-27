@@ -4,38 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Sản phẩm</title>
-
-    <style>
-    body {
-      font-family: Arial;
-      padding: 20px;
-    }
-    input {
-      padding: 6px;
-      margin: 5px 0;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid #444;
-    }
-    th, td {
-      padding: 10px;
-      text-align: center;
-    }
-    button {
-      padding: 6px 12px;
-      cursor: pointer;
-    }
-  </style>
-  
+    <link src="stylesheet" href="QLSP.css">
 </head>
 <body>
     
-     <h2>Quản lý Sản phẩm</h2>
+    <h2>Quản lý Sản phẩm</h2>
 
   <label>Tên sản phẩm:</label><br>
   <input type="text" id="productName"><br>
@@ -57,46 +30,6 @@
     <tbody id="productTable"></tbody>
   </table>
 
-<script>
-    let products = [];
-
-    function addProduct() {
-      const name = document.getElementById("productName").value.trim();
-      const price = document.getElementById("productPrice").value.trim();
-
-      if (!name || !price) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
-        return;
-      }
-
-      products.push({ name, price });
-      renderTable();
-
-      document.getElementById("productName").value = "";
-      document.getElementById("productPrice").value = "";
-    }
-
-    function deleteProduct(index) {
-      products.splice(index, 1);
-      renderTable();
-    }
-
-    function renderTable() {
-      const table = document.getElementById("productTable");
-      table.innerHTML = "";
-
-      products.forEach((p, i) => {
-        table.innerHTML += `
-          <tr>
-            <td>${i + 1}</td>
-            <td>${p.name}</td>
-            <td>${p.price}</td>
-            <td><button onclick="deleteProduct(${i})">Xóa</button></td>
-          </tr>
-        `;
-      });
-    }
-  </script>
-  
+<script src="QLSP.js"></script>
 </body>
 </html>
