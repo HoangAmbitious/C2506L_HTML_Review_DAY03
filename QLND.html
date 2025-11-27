@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Người dùng</title>
+
+    <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    input {
+      padding: 6px;
+      margin: 5px 0;
+      width: 250px;
+    }
+    button {
+      padding: 6px 12px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #444;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+    
+ <h2>Quản lý Người dùng</h2>
+
+  <label>Tên người dùng:</label><br>
+  <input type="text" id="userName"><br>
+
+  <label>Email:</label><br>
+  <input type="email" id="userEmail"><br>
+
+  <button onclick="addUser()">Thêm người dùng</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+
+    <tbody id="userTable"></tbody>
+  </table>
+
+   <script>
+    let users = [];
+
+    function addUser() {
+      const name = document.getElementById("userName").value.trim();
+      const email = document.getElementById("userEmail").value.trim();
+
+      if (!name || !email) {
+        alert("Vui lòng nhập đủ Tên và Email!");
+        return;
+      }
+
+      users.push({ name, email });
+      renderUserTable();
+
+      // Reset form
+      document.getElementById("userName").value = "";
+      document.getElementById("userEmail").value = "";
+    }
+
+    function deleteUser(index) {
+      users.splice(index, 1);
+      renderUserTable();
+    }
+
+    function renderUserTable() {
+      const table = document.getElementById("userTable");
+      table.innerHTML = "";
+
+      users.forEach((u, i) => {
+        table.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${u.name}</td>
+            <td>${u.email}</td>
+            <td><button onclick="deleteUser(${i})">Xóa</button></td>
+          </tr>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
